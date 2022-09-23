@@ -452,11 +452,11 @@ public class TopSheetBehavior<V extends View> extends CoordinatorLayout.Behavior
       * @attr ref com.google.android.material.R.styleable#BottomSheetBehavior_Layout_behavior_draggable
       */
      public void setDraggable(boolean draggable) {
-       this.draggable = draggable;
+       this.mDraggable = draggable;
      }
 
      public boolean isDraggable() {
-       return draggable;
+       return mDraggable;
      }
 
     /**
