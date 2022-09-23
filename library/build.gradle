@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+group = 'com.github.techisfun'
+version = '0.3'
 
 android {
     compileSdkVersion 30
@@ -21,4 +25,18 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     testImplementation 'junit:junit:4.13.2'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.techisfun'
+                artifactId = 'android-top-sheet'
+                version = '0.3'
+            }
+        }
+    }
 }
