@@ -125,7 +125,7 @@ public class TopSheetBehavior<V extends View> extends CoordinatorLayout.Behavior
 
     private boolean mSkipCollapsed;
     
-    private mDraggable = true;
+    private boolean mDraggable = true;
 
     @State
     private int mState = STATE_COLLAPSED;
