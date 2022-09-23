@@ -124,6 +124,8 @@ public class TopSheetBehavior<V extends View> extends CoordinatorLayout.Behavior
     private boolean mHideable;
 
     private boolean mSkipCollapsed;
+    
+    private mDraggable = true;
 
     @State
     private int mState = STATE_COLLAPSED;
@@ -441,6 +443,21 @@ public class TopSheetBehavior<V extends View> extends CoordinatorLayout.Behavior
     public boolean isHideable() {
         return mHideable;
     }
+    
+    /**
+      * Sets whether this bottom sheet is can be collapsed/expanded by dragging. Note: When disabling
+      * dragging, an app will require to implement a custom way to expand/collapse the bottom sheet
+      *
+      * @param draggable {@code false} to prevent dragging the sheet to collapse and expand
+      * @attr ref com.google.android.material.R.styleable#BottomSheetBehavior_Layout_behavior_draggable
+      */
+     public void setDraggable(boolean draggable) {
+       this.draggable = draggable;
+     }
+
+     public boolean isDraggable() {
+       return draggable;
+     }
 
     /**
      * Sets whether this bottom sheet should skip the collapsed state when it is being hidden
@@ -599,7 +616,7 @@ public class TopSheetBehavior<V extends View> extends CoordinatorLayout.Behavior
 
         @Override
         public void onViewDragStateChanged(int state) {
-            if (state == ViewDragHelper.STATE_DRAGGING) {
+            if (state == ViewDragHelper.STATE_DRAGGING && mDraggable) {
                 setStateInternal(STATE_DRAGGING);
             }
         }
